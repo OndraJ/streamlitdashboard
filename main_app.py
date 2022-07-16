@@ -31,11 +31,14 @@ df_afternoon = pd.read_sql(sql=query_afternoon, con = engine)
 
 
 if page == 'Mapa':
+    col1, col2 = st.columns(2)
     st.header('Mapa sdilenych kol v Edinburghu')
-    st.write('Sdilena kola mezi 6 a 9 rano')
-    st.map(df_morning)
-    st.write('Sdilena kola mezi 15 a 19 vecer')
-    st.map(df_afternoon)
+    
+    col1.write('Sdilena kola mezi 6 a 9 rano')
+    col1.map(df_morning)
+
+    col2.write('Sdilena kola mezi 15 a 19 vecer')
+    col2.map(df_afternoon)
 if page == 'Thomson':
     st.write('Thomson sampling')
 

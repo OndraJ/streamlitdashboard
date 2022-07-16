@@ -4,12 +4,12 @@ from sqlalchemy import create_engine
 import pymysql
 
 engine = create_engine("mysql+pymysql://data-student:u9AB6hWGsNkNcRDm@data.engeto.com:3306/data_academy_04_2022")
-st.
+st.set_page_config(layout='wide')
 st.title('Moje prvni appka')
 st.write('...')
 
 page = st.sidebar.radio('Select page', ['Mapa', 'Thomson'])
-st.set_page_config(layout='wide')
+
 query_morning = '''SELECT 
                start_station_latitude as lat,
                start_station_longitude as lon

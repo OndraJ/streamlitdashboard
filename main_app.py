@@ -26,13 +26,15 @@ if page == 'Mapa':
     df_morning = pd.read_sql(sql=query_morning, con = engine)
     col1.map(df_morning)
 
-    col2.write('Sdilena kola mezi 15 a 19 vecer')
+    from_hour_morning = col1.slider('Vecer od', min_value=12, max_value=20)
+    to_hour_morning   = col1.slider('Vecer do', min_value=12, max_value=20)
+    col2.write('Pocatecni stanice mezi {} a {}'.format(from_hour_morning, to_hour_morning))
     query_afternoon = '''SELECT 
                start_station_latitude as lat,
                start_station_longitude as lon
            FROM edinburgh_bikes
            WHERE hour(started_at) BETWEEN {} AND {}
-           LIMIT 100000'''
+           LIMIT 100000'''.format(from_hour_morning, to_hour_morning)
 
     df_afternoon = pd.read_sql(sql=query_afternoon, con = engine)
     col2.map(df_afternoon)
